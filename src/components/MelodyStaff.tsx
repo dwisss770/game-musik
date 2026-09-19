@@ -151,7 +151,7 @@ export default function MelodyStaff({
   svgElement.style.cursor = "pointer";
 
   // Area visual note
-  const bbox = svgElement.getBBox();
+  const bbox = (svgElement as SVGGraphicsElement).getBBox();
 
   // Buat lingkaran indikator
   const circle = document.createElementNS(

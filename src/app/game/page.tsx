@@ -316,7 +316,7 @@ const playMelody = async () => {
 
   setModal({
     type: "error",
-    title: "Jawaban Belum Tepat 😅",
+    title: "Busett, Salah woyy",
     description: "Coba dengarkan melodi sekali lagi.",
   });
 };
