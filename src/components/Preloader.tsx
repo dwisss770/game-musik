@@ -74,11 +74,11 @@ export default function Preloader({
           
           <div className="absolute inset-3 animate-pulse rounded-full bg-[#76C457]/10" />
 
-          <img
+          {/* <img
             src="/images/tes.png"
             alt="Maskot"
             className="relative h-38 w-38 object-contain"
-          />
+          /> */}
         </div>
 
         {/* Title */}

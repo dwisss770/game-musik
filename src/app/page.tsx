@@ -28,7 +28,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl font-extrabold tracking-tight text-[#2A7C13]">
-            Hallo cuy, ini Game Rhythm Maker
+            Hallo, ini Game Rhythm Maker
           </h1>
 
           <p className="mt-3 text-sm leading-6 text-gray-500">
@@ -43,7 +43,7 @@ export default function Home() {
 
           <div className="mb-6">
             <h2 className="text-xl font-bold text-gray-800">
-              Siap bermain Cuyy?
+              Siap bermain?
             </h2>
 
             <p className="mt-1 text-sm text-gray-500">
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
 
           <label className="mb-2 block text-sm font-semibold text-gray-700">
-            Buek Namo:
+            Buat Nama
           </label>
 
           <input
