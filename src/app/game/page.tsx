@@ -73,6 +73,7 @@ export default function GamePage() {
 //   const [question, setQuestion] = useState(0);
   const [lives, setLives] = useState(4);
   const [score, setScore] = useState(0);
+  const [showGuide, setShowGuide] = useState(true);
   
   const [currentMelody, setCurrentMelody] = useState<string[]>([]);
 
@@ -436,7 +437,7 @@ const nextStage = () => {
         </div>
 
         {/* GAME CARD */}
-        <div className="rounded-[28px] bg-white p-5 shadow-[0_20px_50px_rgba(0,0,0,0.07)] md:p-8">
+        <div className="rounded-[28px] bg-white p-5 shadow-[0_20px_50px_rgba(0,0,0,0.07)] md:py-8">
 
           {/* TITLE */}
           <div className="text-center">
@@ -492,7 +493,7 @@ const nextStage = () => {
 
         </div>
 
-        <p className="mt-3 text-center text-[11px] text-gray-400">
+        <p className="mt-3 text-center text-[15px] text-gray-600 underline">
             Klik nada untuk menghapusnya
         </p>
 
@@ -507,7 +508,7 @@ const nextStage = () => {
                 Pilih Nada
               </p>
 
-              <p className="text-[11px] text-gray-400">
+              <p className="text-[13px] text-gray-400">
                 Klik 🎵 untuk mendengar
               </p>
 
@@ -545,7 +546,7 @@ const nextStage = () => {
                   {/* AUDIO */}
                     <button
                     onClick={() => playSingleNote(note.name)}
-                    className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#2A7C13] text-xs text-white shadow-sm transition hover:bg-[#236910] active:scale-95"
+                    className="absolute right-2 top-2 flex h-10 w-10 lg:h-8 lg:w-8 items-center justify-center rounded-full bg-[#2A7C13] text-lg text-white shadow-sm transition hover:bg-[#236910] active:scale-95"
                     title={`Dengar nada ${note.name}`}
                     >
                     🔊
@@ -580,110 +581,259 @@ const nextStage = () => {
 
       </div>
 
+      {/* PETUNJUK GAME */}
+      {showGuide && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#10220d]/45 px-4 py-8 backdrop-blur-md">
+
+          <div className="relative my-auto w-full max-w-xl overflow-hidden rounded-[32px] bg-white shadow-[0_25px_80px_rgba(0,0,0,0.2)]">
+
+            {/* Decorative background */}
+            <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#76C457]/15" />
+            <div className="absolute -bottom-20 -left-16 h-44 w-44 rounded-full bg-[#76C457]/10" />
+
+            <div className="relative p-6 sm:p-7">
+
+              {/* Header */}
+              <div className="flex items-start justify-between">
+
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-[#76C457]/10 px-3 py-1.5 text-xs font-bold text-[#2A7C13]">
+                    <span>🎵</span>
+                    PETUNJUK PERMAINAN
+                  </div>
+
+                  <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-[#17330f] sm:text-3xl">
+                    Siap Menyusun Melodi?
+                  </h2>
+
+                  <p className="mt-2 max-w-md text-sm leading-6 text-gray-500">
+                    Dengarkan melodi dengan baik, lalu susun nada sesuai
+                    urutan yang kamu dengar.
+                  </p>
+                </div>
+
+                <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#76C457]/10 text-3xl sm:flex">
+                  🎼
+                </div>
+
+              </div>
+
+              {/* How to play */}
+              <div className="mt-7">
+
+                <p className="mb-3 text-xs font-bold uppercase tracking-wider text-gray-400">
+                  Cara bermain
+                </p>
+
+                <div className="space-y-2.5">
+
+                  {/* Step 1 */}
+                  <div className="group flex gap-4 rounded-2xl border border-gray-100 bg-[#FAFCF9] p-3.5 transition hover:border-[#76C457]/30 hover:bg-[#F7FBF5]">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2A7C13] text-sm font-extrabold text-white shadow-sm">
+                      1
+                    </div>
+
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-gray-800">
+                        Dengarkan Melodi
+                      </h3>
+
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        Tekan tombol <b className="text-gray-700">
+                          “Dengarkan Melodi”
+                        </b> untuk mendengar urutan nada.
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="group flex gap-4 rounded-2xl border border-gray-100 bg-[#FAFCF9] p-3.5 transition hover:border-[#76C457]/30 hover:bg-[#F7FBF5]">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2A7C13] text-sm font-extrabold text-white shadow-sm">
+                      2
+                    </div>
+
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-gray-800">
+                        Susun Nada
+                      </h3>
+
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        Pilih <b className="text-gray-700">
+                          Do, Re, Mi, Fa, Sol, La, Si
+                        </b> sesuai melodi yang kamu dengar.
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="group flex gap-4 rounded-2xl border border-gray-100 bg-[#FAFCF9] p-3.5 transition hover:border-[#76C457]/30 hover:bg-[#F7FBF5]">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2A7C13] text-sm font-extrabold text-white shadow-sm">
+                      3
+                    </div>
+
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-gray-800">
+                        Perhatikan Nyawa
+                      </h3>
+
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        Kamu memiliki <b className="text-gray-700">4 nyawa</b>
+                        {" "}untuk menyelesaikan seluruh permainan.
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className="mt-5 flex items-center gap-3 rounded-2xl bg-[#F3F8F0] px-4 py-3.5">
+
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm">
+                  🏆
+                </div>
+
+                <div className="flex-1">
+                  <p className="text-xs font-bold text-[#2A7C13]">
+                    Sistem Skor
+                  </p>
+
+                  <p className="mt-0.5 text-xs text-gray-500">
+                    Jawaban benar mendapatkan <b>+100 poin</b>.
+                  </p>
+                </div>
+
+              </div>
+
+              {/* Button */}
+              <button
+                onClick={() => setShowGuide(false)}
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#2A7C13] py-4 text-sm font-bold text-white shadow-[0_8px_20px_rgba(42,124,19,0.2)] transition duration-200 hover:bg-[#236910] hover:shadow-[0_10px_25px_rgba(42,124,19,0.28)] active:scale-[0.98]"
+              >
+                Mulai Bermain
+                <span className="text-lg">→</span>
+              </button>
+
+              <p className="mt-3 text-center text-[11px] text-gray-400">
+                Dengarkan dengan teliti dan susun nada dengan tepat 🎶
+              </p>
+
+            </div>
+          </div>
+        </div>
+      )}
+
+
       {modal.type && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm">
-    <div className="w-full max-w-md rounded-[30px] bg-white p-7 shadow-2xl md:p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-[30px] bg-white p-7 shadow-2xl md:p-8">
 
-      {/* Icon */}
-      <div
-        className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full text-3xl ${
-          modal.type === "success"
-            ? "bg-[#76C457]/15"
-            : modal.type === "error"
-            ? "bg-red-50"
-            : "bg-gray-100"
-        }`}
-      >
-        {modal.type === "success"
-          ? "✓"
-          : modal.type === "error"
-          ? "✕"
-          : "🎵"}
-      </div>
+            {/* Icon */}
+            <div
+              className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full text-3xl ${
+                modal.type === "success"
+                  ? "bg-[#76C457]/15"
+                  : modal.type === "error"
+                  ? "bg-red-50"
+                  : "bg-gray-100"
+              }`}
+            >
+              {modal.type === "success"
+                ? "✓"
+                : modal.type === "error"
+                ? "✕"
+                : "🎵"}
+            </div>
 
-      {/* Title */}
-      <h3
-        className={`mt-5 text-center text-2xl font-extrabold ${
-          modal.type === "success"
-            ? "text-[#2A7C13]"
-            : modal.type === "error"
-            ? "text-red-500"
-            : "text-gray-700"
-        }`}
-      >
-        {modal.title}
-      </h3>
+            {/* Title */}
+            <h3
+              className={`mt-5 text-center text-2xl font-extrabold ${
+                modal.type === "success"
+                  ? "text-[#2A7C13]"
+                  : modal.type === "error"
+                  ? "text-red-500"
+                  : "text-gray-700"
+              }`}
+            >
+              {modal.title}
+            </h3>
 
-      {/* Description */}
-      <p className="mt-2 text-center text-sm leading-6 text-gray-500">
-        {modal.description}
-      </p>
+            {/* Description */}
+            <p className="mt-2 text-center text-sm leading-6 text-gray-500">
+              {modal.description}
+            </p>
 
-      {/* Sisa Nyawa */}
-      <div className="mt-6 rounded-2xl bg-[#F7FAF6] px-5 py-4 text-center">
-        <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
-          Sisa Nyawa
-        </p>
+            {/* Sisa Nyawa */}
+            <div className="mt-6 rounded-2xl bg-[#F7FAF6] px-5 py-4 text-center">
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                Sisa Nyawa
+              </p>
 
-        <p className="mt-1 text-2xl tracking-wide">
-          {"❤️".repeat(lives)}
-          {lives === 0 && "💔"}
-        </p>
-      </div>
+              <p className="mt-1 text-2xl tracking-wide">
+                {"❤️".repeat(lives)}
+                {lives === 0 && "💔"}
+              </p>
+            </div>
 
-      {/* Buttons */}
-      <div className="mt-6 flex flex-col gap-3">
+            {/* Buttons */}
+            <div className="mt-6 flex flex-col gap-3">
 
-        {/* Akhiri Game */}
-        <button
-          onClick={endGame}
-          className="w-full rounded-2xl border-2 border-gray-200 bg-white py-3.5 text-sm font-bold text-gray-600 transition hover:bg-gray-50 active:scale-[0.98]"
-        >
-          Akhiri Game
-        </button>
+              {/* Akhiri Game */}
+              <button
+                onClick={endGame}
+                className="w-full rounded-2xl border-2 border-gray-200 bg-white py-3.5 text-sm font-bold text-gray-600 transition hover:bg-gray-50 active:scale-[0.98]"
+              >
+                Akhiri Game
+              </button>
 
-        {/* Lanjut Tahap */}
-        {modal.type === "success" && (
-          <button
-            onClick={nextStage}
-            className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
-          >
-            {stage < STAGE_CONFIG.length - 1
-              ? "Lanjutkan ke Tahap Berikutnya"
-              : "Lihat Hasil"}
-          </button>
-        )}
+              {/* Lanjut Tahap */}
+              {modal.type === "success" && (
+                <button
+                  onClick={nextStage}
+                  className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
+                >
+                  {stage < STAGE_CONFIG.length - 1
+                    ? "Lanjutkan ke Tahap Berikutnya"
+                    : "Lihat Hasil"}
+                </button>
+              )}
 
-        {/* Coba Lagi */}
-        {modal.type === "error" && (
-          <button
-            onClick={() =>
-              setModal({
-                type: null,
-                title: "",
-                description: "",
-              })
-            }
-            className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
-          >
-            Coba Lagi
-          </button>
-        )}
+              {/* Coba Lagi */}
+              {modal.type === "error" && (
+                <button
+                  onClick={() =>
+                    setModal({
+                      type: null,
+                      title: "",
+                      description: "",
+                    })
+                  }
+                  className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
+                >
+                  Coba Lagi
+                </button>
+              )}
 
-        {/* Game Over */}
-        {modal.type === "gameover" && (
-          <button
-            onClick={endGame}
-            className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
-          >
-            Lihat Hasil
-          </button>
-        )}
+              {/* Game Over */}
+              {modal.type === "gameover" && (
+                <button
+                  onClick={endGame}
+                  className="w-full rounded-2xl bg-[#2A7C13] py-3.5 text-sm font-bold text-white transition hover:bg-[#236910] active:scale-[0.98]"
+                >
+                  Lihat Hasil
+                </button>
+              )}
 
-      </div>
-    </div>
-  </div>
-)}
+            </div>
+          </div>
+        </div>
+      )}
 
     </main>
   );

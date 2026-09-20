@@ -28,7 +28,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl font-extrabold tracking-tight text-[#2A7C13]">
-            Hallo cuy, iko Game Rhythm Maker
+            Hallo cuy, ini Game Rhythm Maker
           </h1>
 
           <p className="mt-3 text-sm leading-6 text-gray-500">
